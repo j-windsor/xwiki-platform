@@ -133,7 +133,15 @@ if (!params.type || params.type == 'standard') {
     def choices = builds.collect { k,v -> "$k" }.join('\n')
     // Add the docker scheduled jobs so that we can trigger them manually too
     choices = "${choices}\nDocker Latest\nDocker All\nDocker Unsupported"
-    def selection = input(choices)
+    def selection = input(
+                    message: 'User input required - What do you want to build?',
+                    parameters: [
+                            [$class: 'ChoiceParameterDefinition',
+                             choices: choices,
+                             name: 'input',
+                             description: 'Menu - select box option']
+                    ])
+
     if (selection == 'All') {
       buildStandardAll(builds)
     } else if (selection == 'Docker Latest') {
