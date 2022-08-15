@@ -130,21 +130,21 @@ def builds = [
 // See the build() method below and the definition of the "type" job parameter.
 if (!params.type || params.type == 'standard') {
   stage('Platform Builds') {
-    def choices = builds.collect { k,v -> "$k" }.join('\n')
-    // Add the docker scheduled jobs so that we can trigger them manually too
-    choices = "${choices}\nDocker Latest\nDocker All\nDocker Unsupported"
-    def selection = askUser(choices)
-    if (selection == 'All') {
-      buildStandardAll(builds)
-    } else if (selection == 'Docker Latest') {
-      buildDocker('docker-latest')
-    } else if (selection == 'Docker All') {
-      buildDocker('docker-all')
-    } else if (selection == 'Docker Unsupported') {
-      buildDocker('docker-unsupported')
-    } else {
-      buildStandardSingle(builds[selection])
-    }
+    // def choices = builds.collect { k,v -> "$k" }.join('\n')
+    // // Add the docker scheduled jobs so that we can trigger them manually too
+    // choices = "${choices}\nDocker Latest\nDocker All\nDocker Unsupported"
+    // def selection = askUser(choices)
+    // if (selection == 'All') {
+    //   buildStandardAll(builds)
+    // } else if (selection == 'Docker Latest') {
+    //   buildDocker('docker-latest')
+    // } else if (selection == 'Docker All') {
+    //   buildDocker('docker-all')
+    // } else if (selection == 'Docker Unsupported') {
+    //   buildDocker('docker-unsupported')
+    // } else {
+    buildStandardSingle(builds[selection])
+    // }
   }
 } else {
   // If the build is docker-latest, only build if the previous build was triggered by some source code changes, 
