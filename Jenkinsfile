@@ -319,6 +319,7 @@ private void buildDocker(type)
 private void build(map)
 {
   node(map.node ?: '') {
+    env.JAVA_HOME = tool 'official'
     buildInsideNode(map)
   }
 }
