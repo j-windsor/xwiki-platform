@@ -340,7 +340,7 @@ private void buildInsideNode(map)
     xwikiBuild(map.name) {
       dockerHubSecretId = "jaywindsorgoogleDockerSecret"
       dockerHubUserId = "jaywindsorgoogle"
-      mavenTool = "official"
+      mavenTool = "officialMaven"
 
       mavenOpts = map.mavenOpts ?: "-Xmx2048m -Xms512m ${heapDumpPath}"
       javadoc = false
