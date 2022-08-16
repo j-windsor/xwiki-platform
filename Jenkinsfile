@@ -319,7 +319,7 @@ private void buildDocker(type)
 private void build(map)
 {
   node(map.node ?: '') {
-    env.JAVA_HOME="$/usr/lib/jvm/java-11-openjdk-amd64"
+    env.JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
     buildInsideNode(map)
   }
 }
