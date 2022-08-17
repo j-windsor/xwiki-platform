@@ -28,7 +28,7 @@ def builds = [
   'Simple' : {
     build(
       name: 'Simple',
-      profiles: 'distribution',
+      profiles: 'legacy,snapshot,distribution',
       properties:
         '-Dtest=none -DfailIfNoTests=false'
     )
