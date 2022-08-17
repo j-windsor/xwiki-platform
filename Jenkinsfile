@@ -25,6 +25,14 @@
 
 // Definitions of all builds
 def builds = [
+  'Simple' : {
+    build(
+      name: 'Simple',
+      profiles: 'distribution',
+      properties:
+        '-Dtest=none -DfailIfNoTests=false'
+    )
+  },
   'Main' : {
     build(
       name: 'Main',
