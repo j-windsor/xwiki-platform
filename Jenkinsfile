@@ -341,6 +341,7 @@ private void buildInsideNode(map)
       dockerHubSecretId = "jaywindsorgoogleDockerSecret"
       dockerHubUserId = "jaywindsorgoogle"
       mavenTool = "officialMaven"
+      skipMail = true
 
       mavenOpts = map.mavenOpts ?: "-Xmx2048m -Xms512m ${heapDumpPath}"
       javadoc = false
