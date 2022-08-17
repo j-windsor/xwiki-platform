@@ -396,9 +396,7 @@ private void buildInsideNode(map)
 
     if (map.deploy) {
       stage('War Deploy'){
-        steps{
-          deploy adapters: [tomcat9(credentialsId: 'tomcat9', path: '', url: 'http://23.236.50.122/')], contextPath: 'xwiki2', war: 'xwiki-platform-distribution/xwiki-platform-distribution-war/target/xwiki-platform-distribution-war-14.7-SNAPSHOT.war'
-        }
+        deploy adapters: [tomcat9(credentialsId: 'tomcat9', path: '', url: 'http://23.236.50.122/')], contextPath: 'xwiki2', war: 'xwiki-platform-distribution/xwiki-platform-distribution-war/target/xwiki-platform-distribution-war-14.7-SNAPSHOT.war'
       }
     }
 }
