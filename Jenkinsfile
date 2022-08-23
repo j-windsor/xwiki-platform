@@ -31,7 +31,7 @@ def builds = [
       profiles: 'legacy,snapshot,distribution',
       properties:
         '-Dtest=none -DfailIfNoTests=false',
-      deploy: true
+      deploy: false
     )
   },
   'Main' : {
