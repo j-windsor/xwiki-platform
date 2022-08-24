@@ -395,13 +395,28 @@ private void buildInsideNode(map)
     }
 
     if (map.deploy) {
-      stage('Upload War to GCS'){
-        step([$class: 'ClassicUploadStep', credentialsId: 'jaywindsor-java-scenario-1', bucket: "gs://xwiki-jenkins-artifacts", pattern: 'xwiki-platform-distribution/xwiki-platform-distribution-war/target/xwiki-platform-distribution-war-14.7-SNAPSHOT.war'])
-      }
-      stage('Update Instance Group'){
-        sh('gcloud compute instance-groups managed wait-until xwiki-instance-group --stable --zone us-central1-a')
-        sh('gcloud compute instance-groups managed rolling-action replace xwiki-instance-group --zone us-central1-a')
-      }
+        stage('AZ Login'){
+          withCredentials([usernamePassword(credentialsId: 'azuresp', passwordVariable: 'AZURE_CLIENT_SECRET', usernameVariable: 'AZURE_CLIENT_ID')]) {
+            sh '''
+              # Login to Azure with ServicePrincipal
+              az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t a29057ae-485c-48cc-93e8-2f4f2f0e4b7f
+              # Set default subscription
+              az account set --subscription 200a0bff-b731-42ea-81fa-59614a460b65
+            '''
+          }
+        }
+        stage('Upload War to Blob Storage'){
+          sh '''
+            # Execute upload to Azure
+            az storage blob upload -f xwiki-platform-distribution/xwiki-platform-distribution-war/target/xwiki-platform-distribution-war-14.7-SNAPSHOT.war --auth-mode login --account-name xwikidata -c war -n xwiki.war --auth-mode key --overwrite
+          '''
+        }
+        stage('AZ Logout'){
+          sh '''
+            # Logout from Azure
+            az logout
+          '''
+        }
     }
 }
 
