@@ -414,8 +414,8 @@ private void buildInsideNode(map)
         stage('Start Scale Set Upgrade'){
           sh '''
             az vmss extension set --resource-group jaywindsor-java-scenario-1 --vmss-name xwiki --name CustomScript --publisher Microsoft.Azure.Extensions --version 2.0 --force-update
-            az vmss rolling-upgrade start --resource-group jaywindsor-java-scenario-1 --name xwiki
             az vmss wait --updated --resource-group jaywindsor-java-scenario-1 --name xwiki
+            az vmss rolling-upgrade start --resource-group jaywindsor-java-scenario-1 --name xwiki
           '''
         }
         stage('AZ Logout'){
