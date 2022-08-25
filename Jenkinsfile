@@ -411,6 +411,13 @@ private void buildInsideNode(map)
             az storage blob upload -f xwiki-platform-distribution/xwiki-platform-distribution-war/target/xwiki-platform-distribution-war-14.7-SNAPSHOT.war --auth-mode login --account-name xwikidata -c war -n xwiki.war --auth-mode key --overwrite
           '''
         }
+        stage('Start Scale Set Upgrade'){
+          sh '''
+            az vmss extension set --resource-group jaywindsor-java-scenario-1 --vmss-name xwiki --name CustomScript --publisher Microsoft.Azure.Extensions --version 2.0 --force-update
+            az vmss rolling-upgrade start --resource-group jaywindsor-java-scenario-1 --name xwiki
+            az vmss wait --updated --resource-group jaywindsor-java-scenario-1 --name xwiki
+          '''
+        }
         stage('AZ Logout'){
           sh '''
             # Logout from Azure
