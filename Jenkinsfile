@@ -396,8 +396,20 @@ private void buildInsideNode(map)
 
     if (map.deploy) {
       stage('Generate EB Zipfile'){
-        sh('cp xwiki-platform-distribution/xwiki-platform-distribution-war/target/xwiki-platform-distribution-war-14.7-SNAPSHOT.war xwiki.war')
-        sh('zip -r ebpayload.zip xwiki.war .ebextensions')
+        sh('cp xwiki-platform-distribution/xwiki-platform-distribution-war/target/xwiki-platform-distribution-war-14.7-SNAPSHOT.war ROOT.war')
+        sh('zip -r ebpayload.zip ROOT.war .ebextensions')
+      }
+      stage('Deploy to EB'){
+        step([
+          $class: 'AWSEBDeploymentBuilder',
+          credentialId: 'awseb',
+          awsRegion: 'us-west-1',
+          applicationName: 'Xwiki4',
+          environmentName: 'Xwiki4-env',
+          bucketName: 'elasticbeanstalk-us-west-1-327752972029',
+          rootObject: 'ebpayload.zip',
+          versionLabelFormat: 'Xwiki4-env-$BUILD_NUMBER'
+        ])
       }
     }
 }
