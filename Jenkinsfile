@@ -404,8 +404,8 @@ private void buildInsideNode(map)
           $class: 'AWSEBDeploymentBuilder',
           credentialId: 'awseb',
           awsRegion: 'us-west-1',
-          applicationName: 'Xwiki4',
-          environmentName: 'Xwiki5-env',
+          applicationName: 'Xwiki5',
+          environmentName: 'Xwiki5-env-1',
           bucketName: 'elasticbeanstalk-us-west-1-327752972029',
           rootObject: 'ebpayload.zip',
           versionLabelFormat: 'Xwiki5-env-$BUILD_NUMBER'
