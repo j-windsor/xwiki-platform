@@ -405,10 +405,10 @@ private void buildInsideNode(map)
           credentialId: 'awseb',
           awsRegion: 'us-west-1',
           applicationName: 'Xwiki4',
-          environmentName: 'Xwiki4-env',
+          environmentName: 'Xwiki5-env',
           bucketName: 'elasticbeanstalk-us-west-1-327752972029',
           rootObject: 'ebpayload.zip',
-          versionLabelFormat: 'Xwiki4-env-$BUILD_NUMBER'
+          versionLabelFormat: 'Xwiki5-env-$BUILD_NUMBER'
         ])
       }
     }
