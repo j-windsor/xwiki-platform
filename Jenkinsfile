@@ -395,12 +395,8 @@ private void buildInsideNode(map)
     }
 
     if (map.deploy) {
-      stage('Upload War to GCS'){
-        step([$class: 'ClassicUploadStep', credentialsId: 'jaywindsor-java-scenario-1', bucket: "gs://xwiki-jenkins-artifacts", pattern: 'xwiki-platform-distribution/xwiki-platform-distribution-war/target/xwiki-platform-distribution-war-14.7-SNAPSHOT.war'])
-      }
-      stage('Update Instance Group'){
-        sh('gcloud compute instance-groups managed wait-until xwiki-instance-group --stable --zone us-central1-a')
-        sh('gcloud compute instance-groups managed rolling-action replace xwiki-instance-group --zone us-central1-a')
+      stage('Generate EB Zipfile'){
+        sh('zip ebpayload.zip xwiki-platform-distribution/xwiki-platform-distribution-war/target/xwiki-platform-distribution-war-14.7-SNAPSHOT.war .ebextensions')
       }
     }
 }
