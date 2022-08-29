@@ -396,7 +396,8 @@ private void buildInsideNode(map)
 
     if (map.deploy) {
       stage('Generate EB Zipfile'){
-        sh('zip ebpayload.zip xwiki-platform-distribution/xwiki-platform-distribution-war/target/xwiki-platform-distribution-war-14.7-SNAPSHOT.war .ebextensions')
+        sh('cp xwiki-platform-distribution/xwiki-platform-distribution-war/target/xwiki-platform-distribution-war-14.7-SNAPSHOT.war xwiki.war')
+        sh('zip -r ebpayload.zip xwiki.war .ebextensions')
       }
     }
 }
