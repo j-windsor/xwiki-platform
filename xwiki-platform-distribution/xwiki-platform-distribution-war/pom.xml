@@ -36,7 +36,7 @@
     <xwiki.extension.name>XWiki</xwiki.extension.name>
     <xwiki.extension.features>${platform.distribution.features}</xwiki.extension.features>
     <xwiki.db>pgsql</xwiki.db>
-    <xwiki.db.connection.url>jdbc:postgresql://awseb-e-xrec7fikfi-stack-awsebrdsdatabase-nsemjmffrg6o.cs52liemb3za.us-west-1.rds.amazonaws.com:5432/xwiki</xwiki.db.connection.url>
+    <xwiki.db.connection.url>jdbc:postgresql://awseb-e-xrec7fikfi-stack-awsebrdsdatabase-jfmpanficlkh.cs52liemb3za.us-west-1.rds.amazonaws.com:5432/xwiki</xwiki.db.connection.url>
     <xwiki.db.connection.username>xwiki</xwiki.db.connection.username>
     <xwiki.db.connection.password>xwiki</xwiki.db.connection.password>
     <xwiki.db.connection.driver_class>org.postgresql.Driver</xwiki.db.connection.driver_class>
